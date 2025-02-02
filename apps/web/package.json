@@ -11,7 +11,9 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.10",
     "@repo/ui": "workspace:*",
+    "negotiator": "^1.0.0",
     "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -19,6 +21,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^22",
     "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",
