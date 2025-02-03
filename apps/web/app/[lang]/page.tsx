@@ -1,32 +1,27 @@
-// File: app/[lang]/page.tsx
 "use client";
 import { useParams } from "next/navigation"; 
 import { getDictionary } from "../../get-dictionary"; 
 import { Locale } from "../../i18n-config"; 
 import LocaleSwitcher from "./components/locale-switcher"; 
-import Sidebar from "./components/sidebar"; 
 import React, { useState, useEffect } from "react"; 
 import Header from "./components/header"; 
 import Hero from "./components/hero";
 
-// Client-side component logic
 export default function IndexPage() {
     const params = useParams();
-    const lang = params.lang as string;
+    const lang = params.lang as Locale;
 
-    // States to hold the fetched dictionary and other client-side states
-    const [dictionary, setDictionary] = useState<any>(null); // Adjust type as needed
+    const [dictionary, setDictionary] = useState<any>(null); 
     const [screenWidth, setScreenWidth] = useState(0);
     const [theme, setTheme] = useState<"light" | "dark">("light");
 
-    // Fetch dictionary on component mount
     useEffect(() => {
         const fetchDictionary = async () => {
             const fetchedDictionary = await getDictionary(lang);
             setDictionary(fetchedDictionary);
         };
         fetchDictionary();
-    }, [lang]); // Re-fetch when lang changes
+    }, [lang]); 
 
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
@@ -43,8 +38,8 @@ export default function IndexPage() {
             setScreenWidth(window.innerWidth);
         };
         window.addEventListener("resize", handleResize);
-        handleResize(); // Initial screen width check
-        return () => window.removeEventListener("resize", handleResize); // Cleanup
+        handleResize();
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     useEffect(() => {
@@ -55,7 +50,6 @@ export default function IndexPage() {
 
     return (
         <div className="relative h-screen w-screen bg-gray-100">
-            {/* <Sidebar screenWidth={screenWidth} /> */}
             <div className="w-full h-full relative justify-between">
                 <Header toggleTheme={toggleTheme} theme={theme} />
                 <Hero />

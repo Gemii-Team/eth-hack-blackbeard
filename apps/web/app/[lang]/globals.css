@@ -147,3 +147,11 @@ body.dark {
     transform: translateX(0);
   }
 }
+
+.glowable-text {
+  color: black;
+}
+
+[glow] .glowable-text {
+  color: var(--glow-color);
+}

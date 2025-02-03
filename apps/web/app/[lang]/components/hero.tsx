@@ -6,7 +6,7 @@ export default function Hero() {
         <section className="relative w-full h-screen bg-gradient-animated text-white flex flex-col justify-center items-center text-center">
             <div className="relative z-10">
                 <div className="flex flex-col items-center justify-center">
-                    <h1 className="flex text-4xl md:text-6xl font-bold mb-4">
+                    <h1 className="flex text-8xl md:text-6xl font-bold mb-4">
                         Welcome to{" "}
                     </h1>
                     <h2 className=" flex text-center text-4xl md:text-6xl font-bold mb-4">
