@@ -5,6 +5,9 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, ArrowLeftRight, File, Menu, X, Info } from "lucide-react";
 import { NavItems } from "./navItems";
+
+
+
 interface SidebarProps {
     screenWidth: number;
 }
@@ -59,13 +62,12 @@ const Sidebar: React.FC<SidebarProps> = ({ screenWidth }) => {
                                 : "64px",
                 }}
                 transition={{ duration: 0.5 }}
-                className={`fixed top-0 left-0 z-50 ${screenWidth < 768 ? "h-full" : "h-[96%] top-4 left-4"
-                    } 
-        bg-foreground shadow-2xl rounded-3xl 
-        backdrop-blur-md 
-        flex 
-        flex-col 
-        overflow-hidden`}
+                className={`fixed top-0 left-0 z-50 ${screenWidth < 768 ? "h-full" : "h-[96%] top-4 left-4"} 
+                bg-foreground shadow-2xl rounded-3xl 
+                backdrop-blur-md 
+                flex 
+                flex-col 
+                overflow-hidden`}
             >
                 <AnimatePresence>
                     {screenWidth < 768 && isMobileSidebarOpen && (
@@ -84,8 +86,8 @@ const Sidebar: React.FC<SidebarProps> = ({ screenWidth }) => {
 
                 <div
                     className={`flex items-center ${isExpanded || isMobileSidebarOpen
-                            ? "justify-between p-6"
-                            : "justify-center p-4"
+                        ? "justify-between p-6"
+                        : "justify-center p-4"
                         } mb-6`}
                 >
                     {(isExpanded || isMobileSidebarOpen) && (

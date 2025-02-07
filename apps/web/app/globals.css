@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+
+
+
 :root {
   --background: #ecf0f1;
   --foreground: #273746;
@@ -67,8 +70,34 @@ body.light {
 }
 
 body.dark {
-  --background: #171717;
+  --background: #273746;
   --foreground: #ffffff;
+
+  --ock-bg-default: #273746;
+  --ock-text-foreground: #ffffff;
+  --ock-text-foreground-muted: #d1d5db;
+  --ock-bg-primary: #1d4ed8;
+  --ock-bg-primary-hover: #93c5fd;
+  --ock-bg-primary-active: #3b82f6;
+  --ock-bg-secondary: #15803d;
+  --ock-bg-secondary-hover: #86efac;
+  --ock-bg-secondary-active: #22c55e;
+  --ock-bg-error: #b91c1c;
+  --ock-bg-warning: #b45309;
+  --ock-bg-success: #15803d;
+  --ock-bg-default-reverse: #f0f0f0;
+
+  --ock-icon-color-primary: #1d4ed8;
+  --ock-icon-color-foreground: #ffffff;
+  --ock-icon-color-foreground-muted: #6b7280;
+  --ock-icon-color-error: #b91c1c;
+  --ock-icon-color-success: #15803d;
+  --ock-icon-color-warning: #b45309;
+
+  --ock-line-primary: #3b82f6;
+  --ock-line-default: #374151;
+  --ock-line-heavy: #1d4ed8;
+  --ock-line-inverse: #ffffff;
 
   --secondary-glow: conic-gradient(from 10deg at 50% 50%,
       #eb7494 0deg,
@@ -84,6 +113,7 @@ body.dark {
       #8bdce0 55deg,
       transparent 360deg);
 }
+
 
 .bg-gradient-animated {
   position: relative;
@@ -146,12 +176,4 @@ body.dark {
   100% {
     transform: translateX(0);
   }
-}
-
-.glowable-text {
-  color: black;
-}
-
-[glow] .glowable-text {
-  color: var(--glow-color);
 }

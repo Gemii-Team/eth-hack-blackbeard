@@ -2,42 +2,107 @@
 
 import { OnchainKitProvider } from "@coinbase/onchainkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { base } from "wagmi/chains";
-import { type ReactNode, useState } from "react";
-import { type State, WagmiProvider } from "wagmi";
-
+import { arbitrum, base, mainnet, optimism, polygon } from "wagmi/chains";
+import { ReactNode, useMemo } from "react";
+import { cookieStorage, createConfig, createStorage, http, WagmiProvider, type State } from "wagmi";
 import { getConfig } from "./config/wagmi";
+import {
+    getDefaultConfig,
+    RainbowKitProvider,
+    lightTheme,
+    darkTheme,
+} from '@rainbow-me/rainbowkit';
+import {
+    rainbowWallet,
+    walletConnectWallet,
+    binanceWallet,
+    
+} from '@rainbow-me/rainbowkit/wallets';
+import { connectorsForWallets } from '@rainbow-me/rainbowkit';
+import React from "react";
 
-export default function Providers(props: {
+const connectors = connectorsForWallets(
+    [
+        {
+            groupName: 'Recommended',
+            wallets: [rainbowWallet, walletConnectWallet, binanceWallet ],
+        },
+    ],
+    {
+        appName: 'My RainbowKit App',
+        projectId: 'YOUR_PROJECT_ID',
+    }
+);
+
+const config = createConfig({
+    connectors,
+    chains: [base],
+    storage: createStorage({
+        storage: cookieStorage,
+    }),
+    ssr: true,
+    transports: {
+        [base.id]: http(),
+    },
+});
+
+
+export default function Providers({
+    children,
+    initialState,
+}: {
     children: ReactNode;
     initialState?: State;
 }) {
-    const [config] = useState(() => getConfig());
-    const [queryClient] = useState(() => new QueryClient());
+    const queryClient = useMemo(() => new QueryClient(), []);
+
+    // Ensure ONCHAINKIT_API_KEY is available
+    const apiKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY;
+    if (!apiKey) {
+        throw new Error("REACT_APP_ONCHAINKIT_API_KEY is missing in the environment variables");
+    }
 
     return (
-        <WagmiProvider config={config} initialState={props.initialState}>
-            <QueryClientProvider client={queryClient}>
-                <OnchainKitProvider
-                    apiKey={process.env.ONCHAINKIT_API_KEY}
-                    chain={base}
-                    config={{
-                        appearance: {
-                            name: "Your App Name",
-                            logo: "https://your-logo.com",
-                            mode: "auto",
-                            theme: "default",
-                        },
-                        wallet: {
-                            display: "modal",
-                            termsUrl: "https://...",
-                            privacyUrl: "https://...",
-                        },
-                    }}
-                >
-                    {props.children}
-                </OnchainKitProvider>
-            </QueryClientProvider>
-        </WagmiProvider>
+        <ErrorBoundary>
+            <WagmiProvider config={config}>
+                <QueryClientProvider client={queryClient}>
+                    <OnchainKitProvider
+                        apiKey={apiKey}
+                        chain={base}
+                    >
+                        <RainbowKitProvider
+                            modalSize="compact"
+                            theme={{
+                                lightMode: lightTheme(),
+                                darkMode: darkTheme(),
+                            }}
+                        >
+                            {children}
+                        </RainbowKitProvider>
+                    </OnchainKitProvider>
+                </QueryClientProvider>
+            </WagmiProvider>
+        </ErrorBoundary>
     );
+}
+
+// Basic ErrorBoundary component to catch errors in the provider tree
+class ErrorBoundary extends React.Component<{ children: ReactNode }> {
+    state = { hasError: false };
+
+    static getDerivedStateFromError() {
+        return { hasError: true };
+    }
+
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+        console.error("Error caught by ErrorBoundary:", error, errorInfo);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return <div>Something went wrong. Please try again later.</div>;
+        }
+
+        return this.props.children;
+    }
 }
