@@ -5,7 +5,11 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@config/*": ["app/[lang]/config/*"]
+    }
   },
   "include": [
     "**/*.ts",

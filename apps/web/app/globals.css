@@ -1,50 +1,179 @@
+@import "tailwindcss";
+
+
+
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ecf0f1;
+  --foreground: #273746;
+
+  /* Primary Colors */
+  --primary: #3b82f6;
+  /* Indigo */
+  --primary-light: #93c5fd;
+  /* Light Indigo */
+  --primary-dark: #1d4ed8;
+  /* Dark Indigo */
+
+
+  /* Secondary Colors */
+  --secondary: #22c55e;
+  /* Green */
+  --secondary-light: #86efac;
+  /* Light Green */
+  --secondary-dark: #15803d;
+  /* Dark Green */
+
+
+  /* Error Colors */
+  --error: #ef4444;
+  /* Red */
+  --error-light: #fca5a5;
+  /* Light Red */
+  --error-dark: #b91c1c;
+  /* Dark Red */
+
+  /* Warning Colors */
+  --warning: #f59e0b;
+  /* Amber */
+  --warning-light: #fcd34d;
+  /* Light Amber */
+  --warning-dark: #b45309;
+  /* Dark Amber */
+
+  /* Neutral/Gray Tones */
+  --neutral: #6b7280;
+  /* Gray */
+  --neutral-light: #d1d5db;
+  /* Light Gray */
+  --neutral-dark: #374151;
+  /* Dark Gray */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body.light {
+  --background: #ecf0f1;
+  --foreground: #273746;
+
+  --secondary-glow: conic-gradient(from 10deg at 50% 50%,
+      #eb7494 0deg,
+      #ae77b2 55deg,
+      #97b5da 120deg,
+      #0099ca 160deg,
+      transparent 360deg);
+
+  --third-glow: conic-gradient(from 90deg at 50% 50%,
+      #ff8b7e 0deg,
+      #e24e6b 160deg,
+      #7ed2da 120deg,
+      #8bdce0 55deg,
+      transparent 360deg);
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+body.dark {
+  --background: #273746;
+  --foreground: #ffffff;
+
+  --ock-bg-default: #273746;
+  --ock-text-foreground: #ffffff;
+  --ock-text-foreground-muted: #d1d5db;
+  --ock-bg-primary: #1d4ed8;
+  --ock-bg-primary-hover: #93c5fd;
+  --ock-bg-primary-active: #3b82f6;
+  --ock-bg-secondary: #15803d;
+  --ock-bg-secondary-hover: #86efac;
+  --ock-bg-secondary-active: #22c55e;
+  --ock-bg-error: #b91c1c;
+  --ock-bg-warning: #b45309;
+  --ock-bg-success: #15803d;
+  --ock-bg-default-reverse: #f0f0f0;
+
+  --ock-icon-color-primary: #1d4ed8;
+  --ock-icon-color-foreground: #ffffff;
+  --ock-icon-color-foreground-muted: #6b7280;
+  --ock-icon-color-error: #b91c1c;
+  --ock-icon-color-success: #15803d;
+  --ock-icon-color-warning: #b45309;
+
+  --ock-line-primary: #3b82f6;
+  --ock-line-default: #374151;
+  --ock-line-heavy: #1d4ed8;
+  --ock-line-inverse: #ffffff;
+
+  --secondary-glow: conic-gradient(from 10deg at 50% 50%,
+      #eb7494 0deg,
+      #ae77b2 55deg,
+      #97b5da 120deg,
+      #0099ca 160deg,
+      transparent 360deg);
+
+  --third-glow: conic-gradient(from 90deg at 50% 50%,
+      #ff8b7e 0deg,
+      #e24e6b 160deg,
+      #7ed2da 120deg,
+      #8bdce0 55deg,
+      transparent 360deg);
 }
 
-body {
-  color: var(--foreground);
+
+.bg-gradient-animated {
+  position: relative;
+  overflow: hidden;
   background: var(--background);
+  color: var(--foreground);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+.bg-gradient-animated::before,
+.bg-gradient-animated::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.bg-gradient-animated::before {
+  background: var(--third-glow);
+  width: 50vw;
+  height: 50vw;
+  margin-left: -200px;
+  top: calc(50vh - 50vw / 2);
+  left: calc(50vw);
+  animation: animateBefore 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
 }
 
-.imgDark {
-  display: none;
+.bg-gradient-animated::after {
+  background: var(--secondary-glow);
+  width: 500px;
+  height: 700px;
+  top: calc(50vh - 50vw / 2);
+  left: calc(50vw - 50vw / 2);
+  animation: animateAfter 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@keyframes animateBefore {
+  0% {
+    transform: translateY(0);
   }
 
-  .imgLight {
-    display: none;
+  50% {
+    transform: translateY(200px) scale(0.8);
   }
-  .imgDark {
-    display: unset;
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes animateAfter {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-250px) scale(1.2);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }
