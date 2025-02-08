@@ -48,10 +48,10 @@ class UserInput(BaseModel):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # อนุญาตทุก origin หรือระบุเฉพาะ domain ที่ต้องการ
+    allow_origins=["*"],  # Allow all origins or specify specific domains
     allow_credentials=True,
-    allow_methods=["*"],  # อนุญาตทุก HTTP methods เช่น GET, POST, OPTIONS
-    allow_headers=["*"],  # อนุญาตทุก headers ที่จำเป็นสำหรับการสื่อสาร
+    allow_methods=["*"],  # Allow all HTTP methods such as GET, POST, OPTIONS
+    allow_headers=["*"],  # Allow all necessary headers for communication
 )
 
 @app.post("/process_input")
@@ -70,6 +70,7 @@ async def process_user_input(request: UserInput):
     return {"responses": responses}
 
 
+# Alternative endpoint without message history
 # @app.post("/process_input")
 # async def process_user_input(request: UserInput):
 #     """API endpoint to process user input without history"""
@@ -80,10 +81,10 @@ async def process_user_input(request: UserInput):
 #     # Collect responses
 #     responses = []
 #     for event in events:
-#         responses.append(event["messages"][-1].content)  # ดึงค่าจาก response ของ agent
+#         responses.append(event["messages"][-1].content)  # Extract response from agent
 
-#     return {"responses": responses}  # คืนค่าผลลัพธ์ที่ได้ทั้งหมด
+#     return {"responses": responses}  # Return all results
 
 
-# คำสั่ง run
+# Run command
 # uvicorn main:app --reload
