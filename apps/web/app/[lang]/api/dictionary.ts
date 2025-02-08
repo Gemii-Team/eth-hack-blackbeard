@@ -7,6 +7,7 @@ const dictionaries = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { lang }: { lang: Locale } = req.query as any;
 
     if (!lang || !dictionaries[lang]) {
@@ -17,6 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const dictionary = await dictionaries[lang]();
         return res.status(200).json(dictionary);
     } catch (error) {
+        console.error(error);
         return res.status(500).json({ error: "Failed to load dictionary" });
     }
 }

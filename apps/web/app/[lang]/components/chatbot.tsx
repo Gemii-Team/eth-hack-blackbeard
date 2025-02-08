@@ -1,21 +1,15 @@
-import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react'
+import React, { ChangeEvent, useCallback, useState } from 'react'
 import {
     Search,
     Plus,
     MessageSquare,
     Folder,
     Image,
-    Video,
     PieChart,
-    Music
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import useChatStore, { ChatMessage } from '../../store/chat/chatStore'
 import { TypeAnimation } from 'react-type-animation'
-import ReactMarkdown from "react-markdown"
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { createRoot } from 'react-dom/client'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -33,6 +27,7 @@ interface CodeProps extends React.HTMLAttributes<HTMLElement> {
 
 
 const ChatInterface: React.FC<ChatInterfaceProps> = ({ theme = 'dark', isConnected }) => {
+    console.log(isConnected)
     const isDark = theme === 'dark'
     const [input, setInput] = useState<string>('')
     const { chatHistory, fetchChatResponse, isLoading } = useChatStore()

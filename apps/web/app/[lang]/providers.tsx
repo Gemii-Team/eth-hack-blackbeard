@@ -5,9 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { arbitrum, base, mainnet, optimism, polygon } from "wagmi/chains";
 import { ReactNode, useMemo } from "react";
 import { cookieStorage, createConfig, createStorage, http, WagmiProvider, type State } from "wagmi";
-import { getConfig } from "./config/wagmi";
 import {
-    getDefaultConfig,
     RainbowKitProvider,
     lightTheme,
     darkTheme,
@@ -36,13 +34,22 @@ const connectors = connectorsForWallets(
 
 const config = createConfig({
     connectors,
-    chains: [base],
+    chains: [
+        mainnet,
+        arbitrum,
+        optimism,
+        polygon,
+    ],
     storage: createStorage({
         storage: cookieStorage,
     }),
     ssr: true,
     transports: {
         [base.id]: http(),
+        [mainnet.id]: http(),
+        [arbitrum.id]: http(),
+        [optimism.id]: http(),
+        [polygon.id]: http(),
     },
 });
 

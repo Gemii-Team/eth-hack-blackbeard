@@ -12,9 +12,13 @@ const KeyWords = [
     "COMMUNITY DRIVEN",
 ];
 
+interface TapeSectionProps {
+    direction?: "ltr" | "rtl";
+}
+
 export const TapeSection = ({
     direction = "ltr",
-}) => {
+}: TapeSectionProps) => {
     return (
         <div className={`z-50 brounded-2xl bg-gradient-to-r from-emerald-300  to-[#0099ca] -rotate-3 -mx-1 py-4`}>
             <div

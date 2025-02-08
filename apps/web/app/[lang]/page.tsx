@@ -13,17 +13,16 @@ import Footer from "./components/footer";
 import { useAccount } from 'wagmi'
 
 export default function IndexPage() {
-    const { address, connector, isConnected } = useAccount()
+    const {  isConnected } = useAccount()
     const params = useParams();
     const lang = params.lang as Locale;
-    const [isConnect, setIsConnect] = useState(false);
     const [dictionary, setDictionary] = useState<any>(null);
     const [screenWidth, setScreenWidth] = useState(0);
     const [theme, setTheme] = useState<"light" | "dark">("light");
 
     const containerRef = useRef<HTMLDivElement | null>(null);
     const { scrollYProgress } = useScroll({ container: containerRef });
-
+    console.log(screenWidth)
     // Scaling effect for the hero section and partners section
     const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
     const partnerScale = useTransform(scrollYProgress, [0.5, 0.7], [1, 1.2]);
@@ -79,7 +78,7 @@ export default function IndexPage() {
                 <motion.div style={{ scale: partnerScale }} className="relative z-50">
                     <TapeSection direction="ltr" />
                     <Partner />
-                    <TapeSection direction="rtr" />
+                    <TapeSection direction="rtl" />
                 </motion.div>
 
                 {/* Chat Interface */}

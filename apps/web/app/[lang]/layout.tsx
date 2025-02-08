@@ -2,7 +2,6 @@ import "../globals.css";
 import '@rainbow-me/rainbowkit/styles.css';
 
 import { Metadata } from "next";
-import localFont from "next/font/local";
 import { i18n, type Locale } from "../../i18n-config";
 import { Kanit } from 'next/font/google'
 import Providers from "./providers";
