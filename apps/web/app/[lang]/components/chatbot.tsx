@@ -12,7 +12,7 @@ import useChatStore, { ChatMessage } from '../../store/chat/chatStore'
 import { TypeAnimation } from 'react-type-animation'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-
+import SpeechToText from './speech-to-text'
 interface ChatInterfaceProps {
     theme?: 'light' | 'dark'
     isConnected: boolean
@@ -79,10 +79,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ theme = 'dark', isConnect
                     {/* Folders section */}
                     <div className="mb-6">
                         <h2 className={`${isDark ? 'text-neutral-400' : 'text-gray-600'} text-sm font-medium mb-2`}>
-                            Folders
+                            AGENTS
                         </h2>
                         <div className="space-y-1">
-                            {['Work chats', 'Fun chats', 'Projects chats'].map((folder) => (
+                            {['Trumbpet', 'LET ME Cook', 'Trade'].map((folder) => (
                                 <button
                                     key={folder}
                                     className={`flex items-center w-full px-3 py-2 ${isDark
@@ -131,8 +131,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ theme = 'dark', isConnect
                         {/* Dynamic container - centered for empty state, scrollable for chat */}
                         <div
                             className={`flex-1 ${chatHistory.length === 0
-                                    ? 'flex items-center justify-center'
-                                    : 'overflow-y-auto'
+                                ? 'flex items-center justify-center'
+                                : 'overflow-y-auto'
                                 } p-8`}
                         >
                             <div className={`max-w-2xl w-full ${chatHistory.length === 0 ? '' : 'mx-auto'}`}>
@@ -164,10 +164,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ theme = 'dark', isConnect
                                             >
                                                 <div
                                                     className={`p-4 rounded-lg ${message.sender === 'user'
-                                                            ? 'bg-[#3c7cfc] text-white'
-                                                            : isDark
-                                                                ? 'bg-neutral-800 text-neutral-200'
-                                                                : 'bg-gray-100 text-gray-800'
+                                                        ? 'bg-[#3c7cfc] text-white'
+                                                        : isDark
+                                                            ? 'bg-neutral-800 text-neutral-200'
+                                                            : 'bg-gray-100 text-gray-800'
                                                         } text-sm max-w-[80%]`}
                                                 >
                                                     <Markdown remarkPlugins={[remarkGfm]}>{message.message}</Markdown>
@@ -198,8 +198,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ theme = 'dark', isConnect
                                                     whileHover={{ scale: 1.05 }}
                                                     whileTap={{ scale: 0.95 }}
                                                     className={`flex flex-col items-center justify-center p-6 ${isDark
-                                                            ? 'bg-neutral-800 hover:bg-neutral-700'
-                                                            : 'bg-gray-100 hover:bg-gray-200'
+                                                        ? 'bg-neutral-800 hover:bg-neutral-700'
+                                                        : 'bg-gray-100 hover:bg-gray-200'
                                                         } rounded-xl transition-colors cursor-pointer`}
                                                 >
                                                     <feature.icon className="h-6 w-6 text-[#3c7cfc] mb-2" />
@@ -215,8 +215,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ theme = 'dark', isConnect
                                                 <button
                                                     key={category}
                                                     className={`text-sm ${isDark
-                                                            ? 'text-neutral-400 hover:text-neutral-200'
-                                                            : 'text-gray-600 hover:text-gray-900'
+                                                        ? 'text-neutral-400 hover:text-neutral-200'
+                                                        : 'text-gray-600 hover:text-gray-900'
                                                         } transition-colors cursor-pointer`}
                                                 >
                                                     {category}
@@ -239,10 +239,11 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ theme = 'dark', isConnect
                                         onChange={handleInputChange}
                                         disabled={isLoading}
                                         className={`w-full ${isDark
-                                                ? 'bg-neutral-800 text-neutral-200 placeholder-neutral-400'
-                                                : 'bg-white text-gray-800 placeholder-gray-400'
+                                            ? 'bg-neutral-800 text-neutral-200 placeholder-neutral-400'
+                                            : 'bg-white text-gray-800 placeholder-gray-400'
                                             } rounded-lg pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-[#3c7cfc]`}
                                     />
+                                    {/* <SpeechToText /> */}
                                     <button
                                         onClick={handleSubmit}
                                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#3c7cfc] hover:text-blue-600 transition-colors cursor-pointer"

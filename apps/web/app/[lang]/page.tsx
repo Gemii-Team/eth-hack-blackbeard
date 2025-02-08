@@ -11,9 +11,13 @@ import Partner from "./components/partner";
 import ChatInterface from "./components/chatbot";
 import Footer from "./components/footer";
 import { useAccount } from 'wagmi'
+import Image from "next/image";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
+
 
 export default function IndexPage() {
-    const {  isConnected } = useAccount()
+    const { isConnected } = useAccount()
     const params = useParams();
     const lang = params.lang as Locale;
     const [dictionary, setDictionary] = useState<any>(null);
@@ -23,11 +27,9 @@ export default function IndexPage() {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const { scrollYProgress } = useScroll({ container: containerRef });
     console.log(screenWidth)
-    // Scaling effect for the hero section and partners section
     const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
     const partnerScale = useTransform(scrollYProgress, [0.5, 0.7], [1, 1.2]);
 
-    // Fetch dictionary for language
     useEffect(() => {
         const fetchDictionary = async () => {
             const fetchedDictionary = await getDictionary(lang);
@@ -42,7 +44,13 @@ export default function IndexPage() {
         document.body.className = newTheme;
     };
 
-    // Handle theme persistence in local storage and screen resizing
+
+
+    const floatingAnimation = {
+        y: ["0%", "-10%", "0%"], // Moves up and down
+        transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+    };
+
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme") || "light";
         setTheme(savedTheme as "light" | "dark");
@@ -56,7 +64,6 @@ export default function IndexPage() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Persist theme in localStorage when it changes
     useEffect(() => {
         localStorage.setItem("theme", theme);
     }, [theme]);
@@ -66,49 +73,42 @@ export default function IndexPage() {
     return (
         <div className="bg-gradient-animated transition-all duration-1000">
             <div ref={containerRef} className="flex flex-col space-y-16">
-                {/* Header Section */}
                 <Header toggleTheme={toggleTheme} theme={theme} />
 
-                {/* Hero Section with Scroll Effect */}
-                <motion.div style={{ scale: heroScale }} className="relative">
-                    <Hero />
-                </motion.div>
+                <Hero />
 
-                {/* Partners Section with Scroll Effect */}
-                <motion.div style={{ scale: partnerScale }} className="relative z-50">
-                    <TapeSection direction="ltr" />
-                    <Partner />
-                    <TapeSection direction="rtl" />
-                </motion.div>
-
-                {/* Chat Interface */}
                 <motion.div
                     style={{ scale: heroScale }}
                     className="relative flex items-center justify-center w-full px-8"
                 >
-                    {/* Main content */}
+                    {!isConnected && (
+                        <div className={`flex flex-col items-center ${theme === 'light' ? 'text-gray-600' : ''} text-center w-full px-6`}>
+                            <h2 className="text-5xl font-bold pt-16 md:pt-20 tracking-tight">
+                                Playground
+                            </h2>
+                            <p className="text-lg text-gray-400 font-light pt-4 max-w-xl">
+                                Experience the power of AI agents in action. Test, explore, and push the limits!
+                            </p>
+
+                            <div className="mt-8">
+                                <ConnectButton />
+                            </div>
+                        </div>
+                    )}
                     <div
-                        className={`max-w-[1080px] w-full transition-all duration-300`}
+                        className={`max-w-[1200px] w-full transition-all duration-300`}
                     >
                         <ChatInterface theme={theme} isConnected={isConnected} />
                     </div>
 
-                    {/* Overlay when disconnected */}
-                    {!isConnected && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm z-10">
-                            <div className={`p-6 rounded-lg ${theme === 'dark' ? 'bg-neutral-800' : 'bg-white'} shadow-lg`}>
-                                <h3 className={`text-xl font-medium mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                                    Not Connected
-                                </h3>
-                                <p className={`text-sm ${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'}`}>
-                                    Please connect to continue chatting
-                                </p>
-                            </div>
-                        </div>
-                    )}
                 </motion.div>
 
-                {/* Footer Section */}
+                {/* <motion.div style={{ scale: partnerScale }} className="relative z-50">
+                    <TapeSection direction="ltr" />
+                    <Partner />
+                    <TapeSection direction="rtl" />
+                </motion.div> */}
+
                 <Footer theme={theme} />
             </div>
         </div>

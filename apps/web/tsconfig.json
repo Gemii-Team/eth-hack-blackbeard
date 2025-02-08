@@ -8,7 +8,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@config/*": ["app/[lang]/config/*"]
+      "@config/*": ["app/[lang]/config/*"],
+      "@/*": ["app/*"]
     }
   },
   "include": [

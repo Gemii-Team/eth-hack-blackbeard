@@ -26,7 +26,7 @@ const partners = [
 
 export default function Partner() {
     return (
-        <section className="py-16 bg-[#273746]">
+        <section className="py-16 w-full ">
             <div className="container mx-auto flex flex-wrap justify-center gap-4 mb-6">
                 <div className="text-white text-center w-full">
                     <h2 className="text-4xl font-extrabold pt-12">Our Partners</h2>
