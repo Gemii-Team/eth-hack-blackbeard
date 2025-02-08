@@ -16,14 +16,14 @@ export const TapeSection = ({
     direction = "ltr",
 }) => {
     return (
-        <div className={`z-50 brounded-2xl bg-gradient-to-r from-emerald-300  to-[#0099ca] ${direction === "ltr" ? '-rotate-3 -mx-1': 'rotate-3 mx-1'} py-4`}>
+        <div className={`z-50 brounded-2xl bg-gradient-to-r from-emerald-300  to-[#0099ca] -rotate-3 -mx-1 py-4`}>
             <div
                 className="flex [mask-image:linear-gradient(to_right, transparent, black_10%, black_90%, not-first:transparent)]"
             >
                 <motion.div
                     className="z-50 flex gap-6 whitespace-nowrap animate-marquee"
                     initial={{ x: 0 }}
-                    animate={{ x: "-100%" }}
+                    animate={{ x: direction === "ltr" ? "-100%" : "100%" }}
                     transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
                 >
                     {[...new Array(1)].fill(0).map((_, index) => (
