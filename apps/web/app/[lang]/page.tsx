@@ -79,7 +79,7 @@ export default function IndexPage() {
                 <motion.div style={{ scale: partnerScale }} className="relative z-50">
                     <TapeSection direction="ltr" />
                     <Partner />
-                    <TapeSection direction="ltr" />
+                    <TapeSection direction="rtr" />
                 </motion.div>
 
                 {/* Chat Interface */}
