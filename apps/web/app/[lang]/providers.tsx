@@ -63,7 +63,7 @@ export default function Providers({
 }) {
     const queryClient = useMemo(() => new QueryClient(), []);
 
-    const apiKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY;
+    const apiKey = process.env.ONCHAINKIT_API_KEY;
     if (!apiKey) {
         throw new Error("REACT_APP_ONCHAINKIT_API_KEY is missing in the environment variables");
     }
