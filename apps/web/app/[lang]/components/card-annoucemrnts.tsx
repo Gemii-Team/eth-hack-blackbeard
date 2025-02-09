@@ -26,7 +26,7 @@ const AnnouncementCard = () => {
                     </span>
                 </h2>
 
-                <div className="flex gap-3 mt-3">
+                {/* <div className="flex gap-3 mt-3">
                     <a
                         href="#"
                         className="px-4 py-2 rounded-lg shadow-md flex items-center gap-2
@@ -38,7 +38,7 @@ const AnnouncementCard = () => {
                         Read Whitepaper
                         <span role="img" aria-label="link">🔗</span>
                     </a>
-                </div>
+                </div> */}
             </div>
         </div>
     );

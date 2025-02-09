@@ -13,7 +13,8 @@ import Footer from "./components/footer";
 import { useAccount } from 'wagmi'
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
+import Team from "./components/our-team";
+import ScrollToTop from "./components/scroll-top";
 
 
 export default function IndexPage() {
@@ -28,7 +29,7 @@ export default function IndexPage() {
     const { scrollYProgress } = useScroll({ container: containerRef });
     console.log(screenWidth)
     const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
-    const partnerScale = useTransform(scrollYProgress, [0.5, 0.7], [1, 1.2]);
+    // const partnerScale = useTransform(scrollYProgress, [0.5, 0.7], [1, 1.2]);
 
     useEffect(() => {
         const fetchDictionary = async () => {
@@ -45,11 +46,6 @@ export default function IndexPage() {
     };
 
 
-
-    const floatingAnimation = {
-        y: ["0%", "-10%", "0%"], // Moves up and down
-        transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-    };
 
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme") || "light";
@@ -103,14 +99,11 @@ export default function IndexPage() {
 
                 </motion.div>
 
-                {/* <motion.div style={{ scale: partnerScale }} className="relative z-50">
-                    <TapeSection direction="ltr" />
-                    <Partner />
-                    <TapeSection direction="rtl" />
-                </motion.div> */}
-
+                <Team theme={theme} />
                 <Footer theme={theme} />
             </div>
+            <ScrollToTop theme={theme} />
+
         </div>
     );
 }

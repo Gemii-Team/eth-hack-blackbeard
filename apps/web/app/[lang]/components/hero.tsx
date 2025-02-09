@@ -1,15 +1,20 @@
+'use client';
+
 import { TypeAnimation } from "react-type-animation";
 import AnnouncementCard from "./card-annoucemrnts";
 import Image from "next/image";
 
 import bitcoin from "../../../public/coin/bitcoin-btc-logo.svg";
-import ethereum from "../../../public/coin/ethereum-eth-logo.svg";
+import ethereum from "../../../public/coin/ethereum-eth.svg";
 import usd from "../../../public/coin/usd-coin-usdc-logo.svg";
 import arbitrum from "../../../public/coin/arbitrum-arb-logo.svg";
 import flow from "../../../public/coin/flow-flow-logo.svg";
 import { useState } from "react";
+import { useRouter } from 'next/navigation'
+
 
 export default function Hero() {
+    const router = useRouter()
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     const coins = [
@@ -56,7 +61,9 @@ export default function Hero() {
                     <button className="mt-8 px-6 py-3 bg-[#3399FF] text-white rounded-full text-lg font-semibold shadow-xl transform transition hover:scale-105 hover:bg-[#66B2FF] focus:outline-none focus:ring-4 focus:ring-[#66B2FF] cursor-pointer">
                         Get Started
                     </button>
-                    <button className="mt-8 px-8 py-3 border-slate-200 border-2 rounded-full text-lg font-semibold shadow-xl transform transition hover:scale-105 cursor-pointer">
+                    <button 
+                    onClick={() => router.push('/swap')}
+                    className="mt-8 px-8 py-3 border-slate-200 border-2 rounded-full text-lg font-semibold shadow-xl transform transition hover:scale-105 cursor-pointer">
                         Trade
                     </button>
                 </div>
