@@ -26,7 +26,9 @@ const Header = ({ toggleTheme, theme }: IHeaderProps) => {
                     transition={{ duration: 0.8 }}
                 >
                     {/* Logo */}
-                    <div className="text-3xl font-extrabold text-slate-700 dark:text-slate-200">
+                    <div 
+                    onClick={() => window.location.href = "/"}
+                    className="text-3xl font-extrabold text-slate-700 dark:text-slate-200">
                         BLACKBREAD
                     </div>
 
