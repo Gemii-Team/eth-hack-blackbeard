@@ -48,8 +48,8 @@ turbo.json          # TurboRepo settings
 ## Installation & Setup
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo/blackbeard.git
-   cd blackbeard
+   git clone https://github.com/your-repo/eth-hack-blackbeard.git
+   cd eth-hack-blackbeard
    ```
 
 2. Install dependencies:
