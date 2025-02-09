@@ -13,7 +13,6 @@ Blackbeard is a decentralized application (dApp) developed for the ETHGlobal "Ag
 ### Backend
 - **NestJS** (with Prisma ORM)
 - **PostgreSQL** (Database)
-- **AWS** (Cloud Provider)
 
 ### Frontend
 - **Next.js** (with i18n support)
@@ -30,73 +29,20 @@ Blackbeard is a decentralized application (dApp) developed for the ETHGlobal "Ag
 
 ## Project Structure
 ```
-.vscode  
-apps  
-    ai  
-        src  
-            new_search.py  
-            price_fetching.py  
-        .gitignore  
-        main.py  
-        requirements.txt  
-        wallet1_seed.json  
-    api  
-        prisma  
-        src  
-        .gitignore  
-        .prettierrc  
-        eslint.config.mjs  
-        nest-cli.json  
-        package.json  
-        tsconfig.build.json  
-        tsconfig.json  
-        node_modules  
-    docs  
-        app  
-            fonts  
-            favicon.ico  
-            global.css  
-            layout.tsx  
-            page.module.css  
-            page.tsx  
-        public  
-        .gitignore  
-        eslint.config.js  
-        next.config.js  
-        package.json  
-        tsconfig.json  
-    web  
-        app  
-            [lang]  
-            fonts  
-            store/chat  
-            favicon.ico  
-            globals.css  
-            page.module.css  
-        dictionaries  
-            en.json  
-            th.json  
-        public  
-            assets  
-            coin  
-            partners  
-            team  
-        .gitignore  
-        eslint.config.js  
-        get-dictionary.ts  
-        i18n-config.ts  
-        middleware.ts  
-        next.config.js  
-        package.json  
-        postcss.config.mjs  
-        tailwind.config.ts  
-        tsconfig.json  
-LICENSE  
-README.md  
-package.json  
-pnpm-lock.yaml  
-pnpm-workspace.yaml  
-turbo.json  
+.vscode/             # VSCode settings and configurations
+apps/               # Main application code
+    ai/             # AI module for news search and price fetching
+    api/            # Backend service using NestJS and Prisma ORM
+    docs/           # Documentation website (Next.js)
+    web/            # Frontend application (Next.js with i18n)
+public/             # Static assets such as images and icons
+config/             # Configuration files for ESLint, Prettier, Tailwind, etc.
+LICENSE             # Project license information
+README.md           # Project documentation
+package.json        # Project dependencies and scripts
+pnpm-lock.yaml      # Dependency lock file
+pnpm-workspace.yaml # TurboRepo workspace configuration
+turbo.json          # TurboRepo settings
 ```
 
 ## Installation & Setup
@@ -156,4 +102,3 @@ Contributions are welcome! Please follow the guidelines below:
 This project is licensed under the MIT License.
 
 ---
-
