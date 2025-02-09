@@ -1,84 +1,159 @@
-# Turborepo starter
+# Blackbeard
 
-This Turborepo starter is maintained by the Turborepo core team.
+## Overview
+Blackbeard is a decentralized application (dApp) developed for the ETHGlobal "Agentic Ethereum" hackathon. The project provides essential Ethereum testnet functionalities on the Sepolia network, including wallet creation, balance retrieval, ETH faucet integration, and real-time crypto news updates.
 
-## Using this example
+## Features
+- **Create Ethereum Testnet (Sepolia) Wallet**
+- **Get Wallet Balance**
+- **Add ETH to Testnet Wallet**
+- **Fetch the Latest News on BTC, ETH, and Other Cryptocurrencies**
 
-Run the following command:
+## Tech Stack
+### Backend
+- **NestJS** (with Prisma ORM)
+- **PostgreSQL** (Database)
+- **AWS** (Cloud Provider)
 
-```sh
-npx create-turbo@latest
+### Frontend
+- **Next.js** (with i18n support)
+- **Tailwind CSS**
+- **TypeScript**
+
+### AI Module
+- **Python** (for AI-powered search and price fetching)
+
+### Tools
+- **TurboRepo** (Monorepo management)
+- **PNPM** (Package manager)
+- **Ethers.js** (Ethereum interaction)
+
+## Project Structure
+```
+.vscode  
+apps  
+    ai  
+        src  
+            new_search.py  
+            price_fetching.py  
+        .gitignore  
+        main.py  
+        requirements.txt  
+        wallet1_seed.json  
+    api  
+        prisma  
+        src  
+        .gitignore  
+        .prettierrc  
+        eslint.config.mjs  
+        nest-cli.json  
+        package.json  
+        tsconfig.build.json  
+        tsconfig.json  
+        node_modules  
+    docs  
+        app  
+            fonts  
+            favicon.ico  
+            global.css  
+            layout.tsx  
+            page.module.css  
+            page.tsx  
+        public  
+        .gitignore  
+        eslint.config.js  
+        next.config.js  
+        package.json  
+        tsconfig.json  
+    web  
+        app  
+            [lang]  
+            fonts  
+            store/chat  
+            favicon.ico  
+            globals.css  
+            page.module.css  
+        dictionaries  
+            en.json  
+            th.json  
+        public  
+            assets  
+            coin  
+            partners  
+            team  
+        .gitignore  
+        eslint.config.js  
+        get-dictionary.ts  
+        i18n-config.ts  
+        middleware.ts  
+        next.config.js  
+        package.json  
+        postcss.config.mjs  
+        tailwind.config.ts  
+        tsconfig.json  
+LICENSE  
+README.md  
+package.json  
+pnpm-lock.yaml  
+pnpm-workspace.yaml  
+turbo.json  
 ```
 
-## What's inside?
+## Installation & Setup
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-repo/blackbeard.git
+   cd blackbeard
+   ```
 
-This Turborepo includes the following packages/apps:
+2. Install dependencies:
+   ```sh
+   pnpm install
+   ```
 
-### Apps and Packages
+3. Set up environment variables:
+   - Create a `.env` file in the root directory
+   - Add necessary configurations for API keys, database connection, and Ethereum network settings
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+4. Start the development server:
+   ```sh
+   pnpm run dev
+   ```
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
+## Using Turborepo
 ### Build
-
 To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
+```sh
 pnpm build
 ```
 
 ### Develop
-
 To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+```sh
 pnpm dev
 ```
 
 ### Remote Caching
+Turborepo supports [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines. By default, caching is local. To enable Remote Caching via Vercel:
+1. Log in to Vercel:
+   ```sh
+   npx turbo login
+   ```
+2. Link the Turborepo to the Remote Cache:
+   ```sh
+   npx turbo link
+   ```
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+## Contribution
+Contributions are welcome! Please follow the guidelines below:
+1. Fork the repository
+2. Create a new feature branch (`git checkout -b feature-name`)
+3. Commit changes (`git commit -m "Add new feature"`)
+4. Push to the branch (`git push origin feature-name`)
+5. Open a Pull Request
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## License
+This project is licensed under the MIT License.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+---
 
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
