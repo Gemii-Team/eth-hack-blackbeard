@@ -6,13 +6,6 @@
         "iv": "a73c823aefb418108a9c39b7cadf0bcf",
         "network_id": "base-sepolia"
     },
-    "e95a8a53-8284-4489-9360-e3a1722c3eba": {
-        "seed": "1d2b0097c2784b10b4f73e316f07cbb951fe4b6d7939e4a413b9a82a4f26b72d3dbfaf582180a3e00836462b54926241b4552d41e454f00e03e4462b801c50e5",
-        "encrypted": true,
-        "auth_tag": "53382fda0fb3209e2b48d9c79796dfab",
-        "iv": "56df5170408b7b1b2de48101af22b327",
-        "network_id": "base-mainnet"
-    },
     "e1a64a61-156c-46bc-95fc-84045dc54257": {
         "seed": "dc8e7000e81b629510588fe3e0832472352ecb824470d74b46daccad419f972e2d5a56d6831fa3301fed89c4ba39210b0a4fa665cf24560319f0c021b1589831",
         "encrypted": true,

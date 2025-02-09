@@ -69,22 +69,5 @@ async def process_user_input(request: UserInput):
 
     return {"responses": responses}
 
-
-# Alternative endpoint without message history
-# @app.post("/process_input")
-# async def process_user_input(request: UserInput):
-#     """API endpoint to process user input without history"""
-    
-#     # Execute the agent with the user input
-#     events = agent_executor.stream({"messages": [HumanMessage(content=request.user_input)]}, stream_mode="values")
-
-#     # Collect responses
-#     responses = []
-#     for event in events:
-#         responses.append(event["messages"][-1].content)  # Extract response from agent
-
-#     return {"responses": responses}  # Return all results
-
-
 # Run command
 # uvicorn main:app --reload
